@@ -19,19 +19,19 @@ namespace zpp {
 namespace internal {
 
 inline void print_arg() noexcept { }
-inline void print_arg(bool v) noexcept { printk("%d", (int)v); }
-inline void print_arg(float v) noexcept { printk("%f", v); }
+inline void print_arg(bool v) noexcept { printk("%d", static_cast<int>(v)); }
+inline void print_arg(float v) noexcept { printk("%f", static_cast<double>(v)); }
 inline void print_arg(double v) noexcept { printk("%g", v); }
 inline void print_arg(char v) noexcept { printk("%c", v); }
 inline void print_arg(const char* v) noexcept { printk("%s", v); }
 inline void print_arg(const void* v) noexcept { printk("%p", v); }
-inline void print_arg(uint8_t v) noexcept { printk("%d", (uint32_t)v); }
-inline void print_arg(int8_t v) noexcept { printk("%d", (int32_t)v); }
-inline void print_arg(uint16_t v) noexcept { printk("%d", (uint32_t)v); }
-inline void print_arg(int16_t v) noexcept { printk("%d", (int32_t)v); }
-inline void print_arg(uint32_t v) noexcept { printk("%d", v); }
+inline void print_arg(uint8_t v) noexcept { printk("%u", static_cast<uint32_t>(v)); }
+inline void print_arg(int8_t v) noexcept { printk("%d", static_cast<int32_t>(v)); }
+inline void print_arg(uint16_t v) noexcept { printk("%u", static_cast<uint32_t>(v)); }
+inline void print_arg(int16_t v) noexcept { printk("%d", static_cast<int32_t>(v)); }
+inline void print_arg(uint32_t v) noexcept { printk("%u", v); }
 inline void print_arg(int32_t v) noexcept { printk("%d", v); }
-inline void print_arg(uint64_t v) noexcept { printk("%lld", v); }
+inline void print_arg(uint64_t v) noexcept { printk("%llu", v); }
 inline void print_arg(int64_t v) noexcept { printk("%lld", v); }
 
 template<class T_Rep, class T_Period>
@@ -48,8 +48,8 @@ inline void print_arg(std::chrono::duration<T_Rep, T_Period> v)
   auto ns = duration_cast<nanoseconds>(v);
 
   printk("%d.%03d%03d%03ds",
-    (int)s.count(), (int)ms.count(),
-    (int)us.count(), (int)ns.count());
+    static_cast<int>(s.count()), static_cast<int>(ms.count()),
+    static_cast<int>(us.count()), static_cast<int>(ns.count()));
 }
 
 template<class T_Clock>
