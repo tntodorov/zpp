@@ -1,5 +1,7 @@
 #
-# ZPP is a header only library, so the only thing we do here is
-# making sure the user can do #include <zpp/thread.hpp>
+# Prefer Kconfig selection, which ensures
+# that all needed options are set
 #
-zephyr_include_directories(include)
+if (CONFIG_LIB_ZPP)
+  zephyr_include_directories(include)
+endif()
