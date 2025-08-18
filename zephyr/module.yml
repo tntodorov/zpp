@@ -1,3 +1,4 @@
+name: zpp
 build:
   cmake: .
   kconfig: Kconfig
