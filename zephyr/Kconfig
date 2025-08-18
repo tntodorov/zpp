@@ -1,0 +1,9 @@
+config LIB_ZPP
+    bool "Enable ZPP C++ library"
+    default n
+    depends on CONFIG_CPP && CONFIG_REQUIRES_FULL_LIBCPP && !CONFIG_STD_CPP98 \
+      && !CONFIG_STD_CPP11 && !CONFIG_STD_CPP14 && !CONFIG_STD_CPP17 \
+      && (CONFIG_STD_CPP20 || CONFIG_STD_CPP2A || CONFIG_STD_CPP2B) \
+    help
+      ZPP is a minimal C++ wrapper a-la std:: for zephyr RTOS thread primitives.
+      For more information visit https://github.com/lowlander/zpp.
